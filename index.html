@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merry Christmas</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            /* Set the background color to black */
+            background-image: url('./christmast_bg.jpg');
+        }
+
+        #snowfall {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: snowfallAnimation linear infinite;
+            animation-duration: 2s;
+        }
+
+        #gift-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            font-size: 50px;
+            /* Adjust the font size to make the gift box larger */
+            z-index: 1;
+        }
+
+        .gift {
+            animation: rotateGift linear infinite;
+            animation-duration: 4s;
+        }
+
+ #message {
+    display: none;          /* bật khi cần */
+    position: fixed;        
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;           /* giảm kích thước scroll */
+    height: auto;
+    padding: 10px 0;        /* giảm padding để chữ sát hơn */
+    margin: 0;
+    text-align: center;
+    z-index: 2;
+    color: #bd3634;
+    font-size: 20px;        /* giảm cỡ chữ */
+    position: fixed;
+    background: transparent;
+    overflow: visible;
+}
+
+.message-cover {
+    position: relative;     
+    width: 100%;            /* ảnh full width theo #message */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transform: rotate(-6deg);
+    transform-origin: center;
+    z-index: 1;
+}
+
+.message-letter {
+    position: absolute;
+    top: 110px;
+    left: 60px;             /* tăng lề trái */
+    right: 60px;            /* tăng lề phải */
+    transform: rotate(-6deg);
+    font-family: "Times New Roman", serif;
+    font-size: 18px;        /* giảm font chữ */
+    line-height: 1.6;
+    text-align: center;
+    color: darkred;
+    z-index: 10;
+    cursor: pointer;
+}
+
+        @keyframes snowfallAnimation {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+
+        @keyframes rotateGift {
+            0% {
+                transform: rotateZ(0deg);
+            }
+
+            100% {
+                transform: rotateZ(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="snowfall"></div>
+    <div id="gift-box" onclick="showMessage()"><img class="gift" src="./gift.png" /></div>
+ <div id="message">
+    <img class="message-cover" src="./scroll.png" />
+    <p class="message-letter">
+        Chúc em Noel Anh mong rằng mùa Noel này sẽ mang đến cho em thật nhiều niềm vui,
+        bình an và hạnh phúc. Dù trời có lạnh đến đâu, luôn cảm nhận được tình yêu và 
+        sự quan tâm mà anh dành cho emmmmmmmmmmmmmmm(xạo cún).<br>
+        Mong rằng mọi điều tốt đẹp đang chờ đón em.<br><br>
+        Yêu bé Nhuyyyyyyy!!!
+    </p>
+</div>
+
+
+    <script>
+        // Snowfall effect
+        function createSnowflake() {
+            const snowflake = document.createElement("div");
+            snowflake.className = "snowflake";
+            snowflake.style.left = Math.random() * window.innerWidth + "px";
+            document.getElementById("snowfall").appendChild(snowflake);
+
+            setTimeout(() => {
+                snowflake.remove();
+            }, 5000);
+        }
+
+        setInterval(createSnowflake, 100);
+
+        // Show message function
+        function showMessage() {
+            const giftBox = document.getElementById("gift-box");
+            const message = document.getElementById("message");
+
+            // Hide the gift box
+            giftBox.style.display = "none";
+
+            // Show the message
+            message.style.display = "block";
+
+            // You can customize the duration the message is displayed
+            setTimeout(() => {
+                // Show the gift box again
+                giftBox.style.display = "block";
+                message.style.display = "none";
+            }, 50000);
+        }
+    </script>
+</body>
+
+</html>
